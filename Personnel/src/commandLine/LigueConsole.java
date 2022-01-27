@@ -1,6 +1,7 @@
 package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
+import java.time.LocalDate;
 
 import java.util.ArrayList;
 
@@ -94,12 +95,13 @@ public class LigueConsole
 	
 	private Option ajouterEmploye(final Ligue ligue)
 	{
-		return new Option("ajouter un employé", "a",
+		return new Option("ajouter un employe", "a",
 				() -> 
 				{
 					ligue.addEmploye(getString("nom : "), 
 						getString("prenom : "), getString("mail : "), 
-						getString("password : "));
+						getString("password : "),
+						LocalDate.parse(getString("Date d'ajout :")), LocalDate.parse(getString("Date de suppression : ")));
 				}
 		);
 	}

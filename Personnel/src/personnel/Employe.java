@@ -1,6 +1,7 @@
 package personnel;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * Employé d'une ligue hébergée par la M2L. Certains peuvent 
@@ -14,10 +15,12 @@ public class Employe implements Serializable, Comparable<Employe>
 {
 	private static final long serialVersionUID = 4795721718037994734L;
 	private String nom, prenom, password, mail;
+	private LocalDate dateLeave;
+	private LocalDate dateCome;
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateCome, LocalDate dateLeave)
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
@@ -25,6 +28,8 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.password = password;
 		this.mail = mail;
 		this.ligue = ligue;
+		this.dateCome = dateCome;
+		this.dateLeave = dateLeave;
 	}
 	
 	/**
@@ -174,11 +179,27 @@ public class Employe implements Serializable, Comparable<Employe>
 	@Override
 	public String toString()
 	{
-		String res = nom + " " + prenom + " " + mail + " (";
+		String res = nom + " " + prenom + " " + mail + " Ajout : " + dateCome + "Supreesion : " + dateLeave + "(";
 		if (estRoot())
 			res += "super-utilisateur";
 		else
 			res += ligue.toString();
 		return res + ")";
+	}
+
+	public LocalDate getDateCome() {
+		return dateCome;
+	}
+
+	public void setDateCome(LocalDate dateCome) {
+		this.dateCome = dateCome;
+	}
+
+	public LocalDate getDateLeave() {
+		return dateLeave;
+	}
+
+	public void setDateLeave(LocalDate dateLeave) {
+		this.dateLeave = dateLeave;
 	}
 }
