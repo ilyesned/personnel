@@ -15,6 +15,7 @@ public class JDBC implements Passerelle
 
 	public JDBC()
 	{
+		System.out.print("Connexion en cours");
 		try
 		{
 			Class.forName(Credentials.getDriverClassName());
@@ -27,6 +28,7 @@ public class JDBC implements Passerelle
 		catch (SQLException e)
 		{
 			System.out.println(e);
+			System.out.println("Connexion échouée");
 		}
 	}
 	

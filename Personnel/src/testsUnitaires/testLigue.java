@@ -23,4 +23,10 @@ class testLigue
 		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty", null, null); 
 		assertEquals(employe, ligue.getEmployes().first());
 	}
+	@Test
+	void Ligue() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("TestLigue");
+		Employe employe = ligue.addEmploye("Bouchard", "prenom", "mail", "password", null, null);
+	}
 }
