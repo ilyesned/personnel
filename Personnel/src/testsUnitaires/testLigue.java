@@ -23,4 +23,6 @@ class testLigue
 		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty", null, null); 
 		assertEquals(employe, ligue.getEmployes().first());
 	}
+
+	
 }
