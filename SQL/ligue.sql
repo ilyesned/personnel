@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `employe`;
 CREATE TABLE IF NOT EXISTS `employe` (
-  `idemploye` int(255) NOT NULL AUTO_INCREMENT,
+  `idemploye` int(255) AUTO_INCREMENT,
   `dateajout` varchar(42) DEFAULT NULL,
   `datesuppr` varchar(42) DEFAULT NULL,
   `mailemploye` varchar(42) DEFAULT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `employe` (
 
 DROP TABLE IF EXISTS `ligue`;
 CREATE TABLE IF NOT EXISTS `ligue` (
-  `idligue` int(255) NOT NULL AUTO_INCREMENT,
+  `idligue` int(255) AUTO_INCREMENT,
   `nomligue` varchar(42) DEFAULT NULL,
   PRIMARY KEY (`idligue`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
