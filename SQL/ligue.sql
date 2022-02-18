@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `employe`;
 CREATE TABLE IF NOT EXISTS `employe` (
   `idemploye` int(255) AUTO_INCREMENT,
-  `dateajout` varchar(42) DEFAULT NULL,
-  `datesuppr` varchar(42) DEFAULT NULL,
+  `dateajout` DATE,
+  `datesuppr` DATE,
   `mailemploye` varchar(42) DEFAULT NULL,
   `nomemploye` varchar(42) DEFAULT NULL,
   `prenomemploye` varchar(42) DEFAULT NULL,
