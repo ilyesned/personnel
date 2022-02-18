@@ -132,8 +132,8 @@ public class LigueConsole
 		Employe employe = ligue.getAdministrateur();
 		return new List<>("Changer l'admin", "a", 					
 			() -> new ArrayList<>(ligue.getEmployes()),
-					(index, element) -> {
-					ligue.setAdministrateur(employe);}
+			(index, element) -> {
+				ligue.setAdministrateur(element);}
 			);
 	}
 
