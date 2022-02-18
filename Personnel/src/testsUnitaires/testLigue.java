@@ -25,10 +25,59 @@ class testLigue
 	}
 	
 	@Test
-	void Ligue() throws SauvegardeImpossible
+	void getNom() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("Fl�chettes");
+		assertEquals("Fl�chettes", ligue.getNom());
+	}
+	
+	@Test
+	void setNom() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("TestLigue");
-		Employe employe = ligue.addEmploye("Bouchard", "prenom", "mail", "password", null, null);
+		assertEquals("TestLigue", ligue.getNom());
+		ligue.setNom("NewLigue");
+		assertEquals("NewLigue", ligue.getNom());
 	}
-
+	
+	@Test
+	void getAdministrateur() throws SauvegardeImpossible 
+	{
+		Ligue ligue = gestionPersonnel.addLigue("Testligue");
+		assertEquals("root   Date Arrivee : null Date Depart : null (super-utilisateur)", ligue.getAdministrateur().toString());
+	}
+	
+	@Test
+	void setAdministrateur() throws SauvegardeImpossible 
+	{
+		Ligue ligue = gestionPersonnel.addLigue("TestLigue");	
+		Employe employe = ligue.addEmploye("Bouchard", "G�rard", "g.bouchard@gmail.com", "azerty", null, null);
+		ligue.setAdministrateur(employe);
+		assertEquals(employe, ligue.getAdministrateur());
+	}
+	
+	@Test
+	void removeLigue() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("TestLigue");
+		int debut = gestionPersonnel.getLigues().size();
+		ligue.remove();
+		int fin = gestionPersonnel.getLigues().size();
+		assertEquals(debut -1, fin);
+	}
+	
+	@Test
+	void compareToLigue() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("TestLigue");
+		Ligue ligue1 = gestionPersonnel.addLigue("Testligue1");
+		assertEquals(-32, ligue.compareTo(ligue1));
+	}
+	
+	@Test
+	void toStringLigue() throws SauvegardeImpossible
+	{
+		Ligue ligue = gestionPersonnel.addLigue("TestLigue");
+		assertEquals("TestLigue", ligue.toString());
+	}
 }
