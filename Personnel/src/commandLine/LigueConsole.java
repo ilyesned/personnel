@@ -104,6 +104,7 @@ public class LigueConsole
 						LocalDate.parse(getString("Date d'ajout :")), LocalDate.parse(getString("Date de suppression : ")));
 				}
 		);
+		
 	}
 	
 	private Menu gererEmployes(Ligue ligue)

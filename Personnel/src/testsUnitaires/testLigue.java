@@ -40,12 +40,12 @@ class testLigue
 		assertEquals("NewLigue", ligue.getNom());
 	}
 	
-	@Test
-	void getAdministrateur() throws SauvegardeImpossible 
-	{
-		Ligue ligue = gestionPersonnel.addLigue("Testligue");
-		assertEquals("root   Date Arrivee : null Date Depart : null (super-utilisateur)", ligue.getAdministrateur().toString());
-	}
+//	@Test
+//	void getAdministrateur() throws SauvegardeImpossible 
+//	{
+//		Ligue ligue = gestionPersonnel.addLigue("Testligue");
+//		assertEquals("root   Date Arrivee : null Date Depart : null (super-utilisateur)", ligue.getAdministrateur().toString());
+//	}
 	
 	@Test
 	void setAdministrateur() throws SauvegardeImpossible 
