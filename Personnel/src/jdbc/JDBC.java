@@ -15,6 +15,7 @@ public class JDBC implements Passerelle
 
 	public JDBC()
 	{
+		System.out.print("Connexion en cours");
 		System.out.println("Connexion en cours");
 		try
 		{
@@ -23,12 +24,12 @@ public class JDBC implements Passerelle
 		}
 		catch (ClassNotFoundException e)
 		{
-			System.out.println("Pilote JDBC non installÃ©.");
+			System.out.println("Pilote JDBC non installé.");
 		}
 		catch (SQLException e)
 		{
 			System.out.println(e);
-			System.out.println("Connexion Ã©chouÃ©e");
+			System.out.println("Connexion échouée");
 		}
 	}
 	
@@ -78,6 +79,25 @@ public class JDBC implements Passerelle
 			PreparedStatement instruction;
 			instruction = connection.prepareStatement("insert into ligue (nomligue) values(?)", Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, ligue.getNom());		
+			instruction.executeUpdate();
+			ResultSet id = instruction.getGeneratedKeys();
+			id.next();
+			return id.getInt(1);
+		} 
+		catch (SQLException exception) 
+		{
+			exception.printStackTrace();
+			throw new SauvegardeImpossible(exception);
+		}		
+	}
+	
+	public int insert(Employe Employe) throws SauvegardeImpossible 
+	{
+		try 
+		{
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("insert into LIGUE (date_d'entree, date_de_sortie,nom,prenom,mail,type,idligue) values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction.setString(1, Employe.getNom());		
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
