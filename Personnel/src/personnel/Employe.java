@@ -19,8 +19,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	private LocalDate dateCome;
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
+	private int type;
+	private int id;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateCome, LocalDate dateLeave)
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateCome, LocalDate dateLeave) throws SauvegardeImpossible
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
@@ -30,6 +32,8 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.dateCome = dateCome;
 		this.dateLeave = dateLeave;
+		this.type = 0;
+		this.id = gestionPersonnel.insert(this); 
 	}
 	
 	/**

@@ -15,7 +15,7 @@ public class JDBC implements Passerelle
 
 	public JDBC()
 	{
-		System.out.print("Connexion en cours");
+		System.out.println("Connexion en cours");
 		System.out.println("Connexion en cours");
 		try
 		{
