@@ -21,6 +21,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	private GestionPersonnel gestionPersonnel;
 	private int type;
 	private int id;
+	public int get;
 	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateCome, LocalDate dateLeave) throws SauvegardeImpossible
 	{
