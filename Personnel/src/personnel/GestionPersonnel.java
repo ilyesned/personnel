@@ -93,6 +93,7 @@ public class GestionPersonnel implements Serializable
 		ligues.add(ligue);
 		return ligue;
 	}
+	
 
 	void remove(Ligue ligue)
 	{
