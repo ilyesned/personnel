@@ -36,6 +36,7 @@ public class JDBC implements Passerelle
 	@Override
 	public GestionPersonnel getGestionPersonnel() 
 	{
+		//TODO ajouter le code permettant de charger la liste des employés
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try 
 		{
@@ -96,14 +97,12 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("insert into employe (dateajout, datesuppr,mailemploye,nomemploye,prenomemploye,mdpemploye,abilitation, idligue) values(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-			instruction.setDate(5, Employe.getDateCome() == null ? null : Date.valueOf(Employe.getDateCome()));
-			instruction.setDate(5, Employe.getDateLeave() == null ? null : Date.valueOf(Employe.getDateLeave()));
+			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemploye) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction.setDate(1, Employe.getDateCome() == null ? null : Date.valueOf(Employe.getDateCome()));
+			instruction.setDate(2, Employe.getDateLeave() == null ? null : Date.valueOf(Employe.getDateLeave()));
 			instruction.setString(3, Employe.getNom());
 			instruction.setString(4, Employe.getPrenom());
 			instruction.setString(5, Employe.getMail());
-			instruction.setInt(6, Employe.get);
-			instruction.setString(7, Employe.getNom());
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
