@@ -46,11 +46,15 @@ public class JDBC implements Passerelle
 			while (ligues.next())
 			{
 				gestionPersonnel.addLigue(ligues.getInt(1), ligues.getString(2));
+				PreparedStatement request = connection.prepareStatement("SELECT * FROM employé WHERE idligue = ?");
+                request.setInt(1, ligues.getInt("idligue"));
+                ResultSet employe = request.executeQuery();
+                Ligue ligue = gestionPersonnel.getLigues().last();
 			}
 			
-			String requeteE = "select * from employe";
-			Statement instructionE = connection.createStatement();
-			ResultSet employe = instructionE.executeQuery(requeteE);
+			String requeteEmpl = "select * from employe";
+			Statement instructionEmpl = connection.createStatement();
+			ResultSet employe = instructionEmpl.executeQuery(requeteEmpl);
 			while (employe.next()){
 			}
 		}
