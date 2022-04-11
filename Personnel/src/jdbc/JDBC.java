@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.sql.Date;
 
 import personnel.*;
@@ -46,10 +47,25 @@ public class JDBC implements Passerelle
 			while (ligues.next())
 			{
 				gestionPersonnel.addLigue(ligues.getInt(1), ligues.getString(2));
-				PreparedStatement request = connection.prepareStatement("SELECT * FROM employé WHERE idligue = ?");
+				PreparedStatement request = connection.prepareStatement("SELECT * FROM employe WHERE idligue = ?");
                 request.setInt(1, ligues.getInt("idligue"));
                 ResultSet employe = request.executeQuery();
                 Ligue ligue = gestionPersonnel.getLigues().last();
+                
+                while (employe.next()) {
+                    int id = employe.getInt("idemploye");
+                    String nom = employe.getString("nom_employe");
+                    String prenom = employe.getString("prénom");
+                    String mail = employe.getString("mail");
+                    String password = employe.getString("password");
+                    LocalDate date_arrivee = employe.getDate("date_d'entré") != null ? LocalDate.parse(employe.getString("date_d'entré")) : null;
+                    LocalDate date_depart = employe.getDate("date_de_sortie") != null ? LocalDate.parse(employe.getString("date_de_sortie")) : null;
+                    int type = employe.getType();
+                    Employe employee = ligue.addEmploye(nom, prenom, mail, password, date_arrivee, date_depart,id);
+                    if (employe.getBoolean("type")) {
+                        ligue.setAdministrateur(employee);
+                    }
+                }
 			}
 			
 			String requeteEmpl = "select * from employe";
@@ -115,6 +131,8 @@ public class JDBC implements Passerelle
 			instruction.setString(3, Employe.getNom());
 			instruction.setString(4, Employe.getPrenom());
 			instruction.setString(5, Employe.getMail());
+			instruction.setInt(7, Employe.getAbilitation());
+			instruction.setInt(8, Employe.getId());
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();

@@ -19,8 +19,26 @@ public class Employe implements Serializable, Comparable<Employe>
 	private LocalDate dateCome;
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
-	private int type;
-	private int id;
+	private int abilitation;
+	private int id = -1;
+	
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateCome, LocalDate dateLeave, int id)
+	{
+		this.gestionPersonnel = gestionPersonnel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.password = password;
+		this.mail = mail;
+		this.ligue = ligue;
+		this.dateCome = dateCome;
+		this.dateLeave = dateLeave;
+		this.abilitation = 0;
+		try {
+			this.id = gestionPersonnel.insert(this);
+		} catch (SauvegardeImpossible e) {
+			e.printStackTrace();
+		}
+	}
 	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateCome, LocalDate dateLeave)
 	{
@@ -32,7 +50,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.dateCome = dateCome;
 		this.dateLeave = dateLeave;
-		this.type = 0;
+		this.abilitation = 0;
 		try {
 			this.id = gestionPersonnel.insert(this);
 		} catch (SauvegardeImpossible e) {
@@ -211,11 +229,16 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.dateLeave = dateLeave;
 	}
 	
-	public void setType(int type) {
-		this.type = type;
+	public void setAbilitation(int type) {
+		this.abilitation = type;
 	}
 
-	public int getType() {
-		return this.type;
+	public int getAbilitation() {
+		return this.abilitation;
+	}
+
+	public int getId() {
+		// TODO Auto-generated method stub
+		return this.id;
 	}
 }
