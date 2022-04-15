@@ -131,8 +131,9 @@ public class JDBC implements Passerelle
 			instruction.setString(3, Employe.getNom());
 			instruction.setString(4, Employe.getPrenom());
 			instruction.setString(5, Employe.getMail());
-			instruction.setInt(7, Employe.getAbilitation());
-			instruction.setInt(8, Employe.getId());
+			instruction.setInt(6, Employe.getAbilitation());
+			instruction.setInt(7, Employe.getId());
+			instruction.setInt(8, Employe.getIdLigue());
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();

@@ -241,4 +241,8 @@ public class Employe implements Serializable, Comparable<Employe>
 		// TODO Auto-generated method stub
 		return this.id;
 	}
+
+	public int getIdLigue() {
+		return this.ligue.getId();
+	}
 }

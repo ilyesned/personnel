@@ -98,15 +98,10 @@ public class LigueConsole
 		return new Option("ajouter un employe", "a",
 				() -> 
 				{
-					try {
-						ligue.addEmploye(getString("nom : "), 
-							getString("prenom : "), getString("mail : "), 
-							getString("password : "),
-							LocalDate.parse(getString("Date d'ajout :")), LocalDate.parse(getString("Date de suppression : ")));
-					} catch (SauvegardeImpossible e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					ligue.addEmploye(getString("nom : "), 
+						getString("prenom : "), getString("mail : "), 
+						getString("password : "),
+						LocalDate.parse(getString("Date d'ajout :")), LocalDate.parse(getString("Date de suppression : ")));
 				}
 		);
 		
