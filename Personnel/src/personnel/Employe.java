@@ -242,7 +242,11 @@ public class Employe implements Serializable, Comparable<Employe>
 		return this.id;
 	}
 
-	public int getIdLigue() {
-		return this.ligue.getId();
+	public Integer getIdLigue() {
+		if(this.ligue != null) {
+			return this.ligue.getId();
+		}else {
+			return null;
+		}
 	}
 }

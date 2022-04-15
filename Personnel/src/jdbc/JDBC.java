@@ -133,7 +133,12 @@ public class JDBC implements Passerelle
 			instruction.setString(5, Employe.getMail());
 			instruction.setInt(6, Employe.getAbilitation());
 			instruction.setInt(7, Employe.getId());
-			instruction.setInt(8, Employe.getIdLigue());
+			//TODO faire une verification pour savoir l'id de la ligue est null ou existant
+			if(Employe.getLigue() != null) {
+				instruction.setInt(8, Employe.getIdLigue());
+			}else {
+				instruction.setNull(8, Employe.getIdLigue(), null);
+			}
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
