@@ -1,11 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
---
--- Hôte : 127.0.0.1:3306
--- Généré le : ven. 15 avr. 2022 à 13:45
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,13 +50,6 @@ CREATE TABLE IF NOT EXISTS `ligue` (
 -- Déchargement des données de la table `ligue`
 --
 
-INSERT INTO `ligue` (`idligue`, `nomligue`) VALUES
-(1, 'ligue1'),
-(2, 'ligue2'),
-(3, 'ligue5'),
-(4, 'LIGUE6'),
-(5, 'LIGUETEST');
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
