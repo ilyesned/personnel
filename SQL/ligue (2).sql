@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 18 fév. 2022 à 13:28
+-- Généré le : ven. 15 avr. 2022 à 13:45
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -29,15 +29,15 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `employe`;
 CREATE TABLE IF NOT EXISTS `employe` (
-  `idemploye` int(255) AUTO_INCREMENT,
-  `dateajout` DATE,
-  `datesuppr` DATE,
+  `idemploye` int(255) NOT NULL AUTO_INCREMENT,
+  `dateajout` date DEFAULT NULL,
+  `datesuppr` date DEFAULT NULL,
   `mailemploye` varchar(42) DEFAULT NULL,
   `nomemploye` varchar(42) DEFAULT NULL,
   `prenomemploye` varchar(42) DEFAULT NULL,
   `mdpemployé` varchar(42) DEFAULT NULL,
-  `abilitation` varchar(42) DEFAULT NULL,
-  `idligue` varchar(42) DEFAULT NULL,
+  `abilitation` int(42) DEFAULT NULL,
+  `idligue` int(42) DEFAULT NULL,
   PRIMARY KEY (`idemploye`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -49,47 +49,21 @@ CREATE TABLE IF NOT EXISTS `employe` (
 
 DROP TABLE IF EXISTS `ligue`;
 CREATE TABLE IF NOT EXISTS `ligue` (
-  `idligue` int(255) AUTO_INCREMENT,
+  `idligue` int(255) NOT NULL AUTO_INCREMENT,
   `nomligue` varchar(42) DEFAULT NULL,
   PRIMARY KEY (`idligue`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ligue`
 --
 
 INSERT INTO `ligue` (`idligue`, `nomligue`) VALUES
-(1, 'ligue 1'),
-(2, 'Flï¿½chettes'),
-(3, 'TestLigue'),
-(4, 'TestLigue'),
-(5, 'Testligue1'),
-(6, 'Flechettes'),
-(7, 'TestLigue'),
-(8, 'TestLigue'),
-(9, 'Flechettes'),
-(10, 'Testligue'),
-(11, 'TestLigue'),
-(12, 'Flï¿½chettes'),
-(13, 'TestLigue'),
-(14, 'TestLigue'),
-(15, 'Testligue1'),
-(16, 'Flechettes'),
-(17, 'TestLigue'),
-(18, 'TestLigue'),
-(19, 'Flechettes'),
-(20, 'TestLigue'),
-(21, 'Flï¿½chettes'),
-(22, 'TestLigue'),
-(23, 'TestLigue'),
-(24, 'Testligue1'),
-(25, 'Flechettes'),
-(26, 'TestLigue'),
-(27, 'TestLigue'),
-(28, 'Flechettes'),
-(29, 'TestLigue'),
-(30, 'ligue'),
-(31, 'ligueTest');
+(1, 'ligue1'),
+(2, 'ligue2'),
+(3, 'ligue5'),
+(4, 'LIGUE6'),
+(5, 'LIGUETEST');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
