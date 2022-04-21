@@ -37,7 +37,7 @@ public class JDBC implements Passerelle
 	@Override
 	public GestionPersonnel getGestionPersonnel() 
 	{
-		//TODO ajouter le code permettant de charger la liste des employés
+		//TODO ajouter le code permettant de charger la liste des employï¿½s
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try 
 		{
@@ -55,10 +55,10 @@ public class JDBC implements Passerelle
                 while (employe.next()) {
                     int id = employe.getInt("idemploye");
                     String nom = employe.getString("nom_employe");
-                    String prenom = employe.getString("prénom");
+                    String prenom = employe.getString("prï¿½nom");
                     String mail = employe.getString("mail");
                     String password = employe.getString("password");
-                    LocalDate date_arrivee = employe.getDate("date_d'entré") != null ? LocalDate.parse(employe.getString("date_d'entré")) : null;
+                    LocalDate date_arrivee = employe.getDate("date_d'entrï¿½") != null ? LocalDate.parse(employe.getString("date_d'entrï¿½")) : null;
                     LocalDate date_depart = employe.getDate("date_de_sortie") != null ? LocalDate.parse(employe.getString("date_de_sortie")) : null;
                     int type = employe.getType();
                     Employe employee = ligue.addEmploye(nom, prenom, mail, password, date_arrivee, date_depart,id);
