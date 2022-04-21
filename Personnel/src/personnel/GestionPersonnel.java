@@ -117,6 +117,7 @@ public class GestionPersonnel implements Serializable
 	}
 
 	int insert(Employe employe) throws SauvegardeImpossible {
+		//TODO mettre un if sur le nom de root
 		return passerelle.insert(employe);
 	}
 }

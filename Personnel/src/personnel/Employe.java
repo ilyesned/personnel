@@ -20,7 +20,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
 	private int abilitation;
-	private int id = -1;
+	private int id = 0;
 	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateCome, LocalDate dateLeave, int id)
 	{
