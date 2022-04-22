@@ -125,19 +125,19 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemploye) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-			instruction.setDate(1, Employe.getDateCome() == null ? null : Date.valueOf(Employe.getDateCome()));
-			instruction.setDate(2, Employe.getDateLeave() == null ? null : Date.valueOf(Employe.getDateLeave()));
-			instruction.setString(3, Employe.getNom());
-			instruction.setString(4, Employe.getPrenom());
-			instruction.setString(5, Employe.getMail());
-			instruction.setInt(6, Employe.getAbilitation());
-			instruction.setInt(7, Employe.getId());
+			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemployé) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction.setDate(6, Employe.getDateCome() == null ? null : Date.valueOf(Employe.getDateCome()));
+			instruction.setDate(7, Employe.getDateLeave() == null ? null : Date.valueOf(Employe.getDateLeave()));
+			instruction.setString(1, Employe.getNom());
+			instruction.setString(2, Employe.getPrenom());
+			instruction.setString(3, Employe.getMail());
+			instruction.setInt(4, Employe.getAbilitation());
+			instruction.setInt(8, Employe.getId());
 			//TODO faire une verification pour savoir l'id de la ligue est null ou existant
 			if(Employe.getLigue() != null) {
-				instruction.setInt(8, Employe.getIdLigue());
+				instruction.setInt(5, Employe.getIdLigue());
 			}else {
-				instruction.setNull(8, Employe.getIdLigue(), null);
+				instruction.setNull(5, Employe.getIdLigue(), null);
 			}
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
