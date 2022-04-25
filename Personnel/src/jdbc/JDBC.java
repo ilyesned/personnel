@@ -37,7 +37,7 @@ public class JDBC implements Passerelle
 	@Override
 	public GestionPersonnel getGestionPersonnel() 
 	{
-		//TODO ajouter le code permettant de charger la liste des employés
+		//TODO ajouter le code permettant de charger la liste des employï¿½s
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try 
 		{
@@ -55,10 +55,10 @@ public class JDBC implements Passerelle
                 while (employe.next()) {
                     int id = employe.getInt("idemploye");
                     String nom = employe.getString("nom_employe");
-                    String prenom = employe.getString("prénom");
+                    String prenom = employe.getString("prï¿½nom");
                     String mail = employe.getString("mail");
                     String password = employe.getString("password");
-                    LocalDate date_arrivee = employe.getDate("date_d'entré") != null ? LocalDate.parse(employe.getString("date_d'entré")) : null;
+                    LocalDate date_arrivee = employe.getDate("date_d'entrï¿½") != null ? LocalDate.parse(employe.getString("date_d'entrï¿½")) : null;
                     LocalDate date_depart = employe.getDate("date_de_sortie") != null ? LocalDate.parse(employe.getString("date_de_sortie")) : null;
                     int type = employe.getType();
                     Employe employee = ligue.addEmploye(nom, prenom, mail, password, date_arrivee, date_depart,id);
@@ -125,7 +125,7 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemployé) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemployï¿½) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			instruction.setDate(6, Employe.getDateCome() == null ? null : Date.valueOf(Employe.getDateCome()));
 			instruction.setDate(7, Employe.getDateLeave() == null ? null : Date.valueOf(Employe.getDateLeave()));
 			instruction.setString(1, Employe.getNom());
@@ -149,5 +149,61 @@ public class JDBC implements Passerelle
 			exception.printStackTrace();
 			throw new SauvegardeImpossible(exception);
 		}		
+	}
+
+	@Override
+	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		try
+		{
+			PreparedStatement listLigue;
+			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE idligue = ?");
+			listLigue.setInt(1, ligue.getId());
+			listLigue.executeUpdate();
+			System.out.println("Ligue " + ligue.getNom() + " supprimÃ©");
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			throw new SauvegardeImpossible(e);
+		}
+		
+	}
+
+	@Override
+	public void deleteEmploye(Employe employe) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		try
+		{
+			PreparedStatement listEmploye;
+			listEmploye = connection.prepareStatement("DELETE FROM employe WHERE idemploye = ?");
+			listEmploye.setInt(1, employe.getId());
+			listEmploye.executeUpdate();
+			System.out.println("Employe " + employe.getNom() + " supprimÃ©");
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			throw new SauvegardeImpossible(e);
+		}
+	}
+
+	@Override
+	public void setAdmin(Employe employe) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		try 
+		{
+			PreparedStatement listEmploye;
+			listEmploye = connection.prepareStatement("UPDATE employe SET admin = ? WHERE idligue = ? AND idemploye = ?");
+			listEmploye.setInt(1, 1);
+			listEmploye.setInt(2, employe.getLigue().getId());
+			listEmploye.setInt(3, employe.getId());
+			listEmploye.executeUpdate();
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			throw new SauvegardeImpossible(e);
+		}
 	}
 }
