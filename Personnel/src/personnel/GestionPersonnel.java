@@ -126,4 +126,18 @@ public class GestionPersonnel implements Serializable
 			return passerelle.insert(employe);
 		}
 	}
+
+	public void setAdmin(Employe employe) {
+		// TODO Auto-generated method stub
+		// SetAdmin --> Passerelle.java
+		try
+		{
+			passerelle.setAdmin(employe);
+		}
+		catch(SauvegardeImpossible e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
 }
