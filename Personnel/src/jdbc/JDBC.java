@@ -55,7 +55,7 @@ public class JDBC implements Passerelle
                 while (employe.next()) {
                     int id = employe.getInt("idemploye");
                     String nom = employe.getString("nom_employe");
-                    String prenom = employe.getString("prenom");
+                    String prenom = employe.getString("pr�nom");
                     String mail = employe.getString("mail");
                     String password = employe.getString("password");
                     LocalDate date_arrivee = employe.getDate("date_d'entr�") != null ? LocalDate.parse(employe.getString("date_d'entr�")) : null;
@@ -125,7 +125,7 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemploye) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemploy�) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			instruction.setDate(6, Employe.getDateCome() == null ? null : Date.valueOf(Employe.getDateCome()));
 			instruction.setDate(7, Employe.getDateLeave() == null ? null : Date.valueOf(Employe.getDateLeave()));
 			instruction.setString(1, Employe.getNom());
@@ -157,7 +157,7 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement listLigue;
-			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE idligue = ?");
+			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE numligue = ?");
 			listLigue.setInt(1, ligue.getId());
 			listLigue.executeUpdate();
 			System.out.println("Ligue " + ligue.getNom() + " supprimé");

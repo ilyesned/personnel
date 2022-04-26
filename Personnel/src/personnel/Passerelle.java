@@ -14,5 +14,6 @@ public interface Passerelle
 	public void deleteEmploye(Employe employe) throws SauvegardeImpossible;
 	/* changer employe par l'Admin */
 	public void setAdmin(Employe employe)  throws SauvegardeImpossible;
+	public Employe getSuperAdmin(Employe root) throws SauvegardeImpossible;
 	
 }
