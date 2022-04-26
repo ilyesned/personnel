@@ -54,21 +54,12 @@ public class JDBC implements Passerelle
                 
                 while (employe.next()) {
                     int id = employe.getInt("idemploye");
-<<<<<<< HEAD
                     String nom = employe.getString("nomemploye");
                     String prenom = employe.getString("prenomemploye");
                     String mail = employe.getString("mailemploye");
                     String password = employe.getString("mdpemployé");
                     LocalDate date_arrivee = employe.getDate("dateajout") != null ? LocalDate.parse(employe.getString("dateajout")) : null;
                     LocalDate date_depart = employe.getDate("datesuppr") != null ? LocalDate.parse(employe.getString("datesuppr")) : null;
-=======
-                    String nom = employe.getString("nom_employe");
-                    String prenom = employe.getString("prï¿½nom");
-                    String mail = employe.getString("mail");
-                    String password = employe.getString("password");
-                    LocalDate date_arrivee = employe.getDate("date_d'entrï¿½") != null ? LocalDate.parse(employe.getString("date_d'entrï¿½")) : null;
-                    LocalDate date_depart = employe.getDate("date_de_sortie") != null ? LocalDate.parse(employe.getString("date_de_sortie")) : null;
->>>>>>> b13b03a965751cc4bfd3d79ff25bb98fa000dc15
                     int type = employe.getType();
                     Employe employee = ligue.addEmploye(nom, prenom, mail, password, date_arrivee, date_depart,id);
                     if (employe.getBoolean("abilitation")) {
@@ -159,10 +150,6 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
-<<<<<<< HEAD
-	
-	
-=======
 
 	@Override
 	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible {
@@ -219,5 +206,4 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(e);
 		}
 	}
->>>>>>> b13b03a965751cc4bfd3d79ff25bb98fa000dc15
 }
