@@ -206,4 +206,10 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(e);
 		}
 	}
+
+	@Override
+	public Employe getSuperAdmin(Employe root) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
