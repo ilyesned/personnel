@@ -49,7 +49,16 @@ public class LigueConsole
 	}
 	private Option afficherEmployes(final Ligue ligue)
 	{
-		return new Option("Afficher les employes", "l", () -> {System.out.println(ligue.getEmployes());});
+		return new Option("Afficher les employes", "l", () -> {
+			
+			for (Employe employes: ligue.getEmployes())
+			System.out.println(employes);
+			
+			if(ligue.getEmployes().size() == 0)
+			{
+				System.out.println("Il n'y a aucun employé dans cette ligue");
+			}
+		});
 	}
 
 	private Option ajouterLigue()
@@ -82,7 +91,9 @@ public class LigueConsole
 	private Option changerNom(final Ligue ligue)
 	{
 		return new Option("Renommer", "r", 
-				() -> {ligue.setNom(getString("Nouveau nom : "));});
+				() -> {ligue.setNom(getString("Nouveau nom : "));
+				System.out.println("La ligue a bien été renommée par" + ligue.getNom());
+				});
 	}
 
 	private List<Ligue> selectionnerLigue()
@@ -97,7 +108,8 @@ public class LigueConsole
 	{
 		return new Option("ajouter un employe", "a",
 				() -> 
-				{
+				{	
+					System.out.println("Ajouter un employe");
 					ligue.addEmploye(getString("nom : "), 
 						getString("prenom : "), getString("mail : "), 
 						getString("password : "),
