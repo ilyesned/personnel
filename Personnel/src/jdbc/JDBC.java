@@ -157,7 +157,7 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement listLigue;
-			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE idligue = ?");
+			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE numligue = ?");
 			listLigue.setInt(1, ligue.getId());
 			listLigue.executeUpdate();
 			System.out.println("Ligue " + ligue.getNom() + " supprimé");

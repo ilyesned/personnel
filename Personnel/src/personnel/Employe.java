@@ -249,4 +249,9 @@ public class Employe implements Serializable, Comparable<Employe>
 			return null;
 		}
 	}
+
+	public void setId(int id) {
+		// TODO Auto-generated method stub
+		this.id = id;
+	}
 }
