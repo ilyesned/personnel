@@ -20,6 +20,7 @@ public class GestionPersonnel implements Serializable
 	private static final long serialVersionUID = -105283113987886425L;
 	private static GestionPersonnel gestionPersonnel = null;
 	private SortedSet<Ligue> ligues;
+	private SortedSet<Employe> employes;
 	private Employe root = new Employe(this, null, "root", "", "", "toor", null, null);
 	public final static int SERIALIZATION = 1, JDBC = 2,
 			TYPE_PASSERELLE = JDBC;
@@ -125,5 +126,9 @@ public class GestionPersonnel implements Serializable
 		else {
 			return passerelle.insert(employe);
 		}
+	}
+	
+	void remove(Employe employe) throws SauvegardeImpossible{
+		employes.remove(employe);
 	}
 }

@@ -54,15 +54,15 @@ public class JDBC implements Passerelle
                 
                 while (employe.next()) {
                     int id = employe.getInt("idemploye");
-                    String nom = employe.getString("nom_employe");
-                    String prenom = employe.getString("prénom");
-                    String mail = employe.getString("mail");
-                    String password = employe.getString("password");
-                    LocalDate date_arrivee = employe.getDate("date_d'entré") != null ? LocalDate.parse(employe.getString("date_d'entré")) : null;
-                    LocalDate date_depart = employe.getDate("date_de_sortie") != null ? LocalDate.parse(employe.getString("date_de_sortie")) : null;
+                    String nom = employe.getString("nomemploye");
+                    String prenom = employe.getString("prenomemploye");
+                    String mail = employe.getString("mailemploye");
+                    String password = employe.getString("mdpemployé");
+                    LocalDate date_arrivee = employe.getDate("dateajout") != null ? LocalDate.parse(employe.getString("dateajout")) : null;
+                    LocalDate date_depart = employe.getDate("datesuppr") != null ? LocalDate.parse(employe.getString("datesuppr")) : null;
                     int type = employe.getType();
                     Employe employee = ligue.addEmploye(nom, prenom, mail, password, date_arrivee, date_depart,id);
-                    if (employe.getBoolean("type")) {
+                    if (employe.getBoolean("abilitation")) {
                         ligue.setAdministrateur(employee);
                     }
                 }
@@ -150,4 +150,6 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
+	
+	
 }
