@@ -127,8 +127,24 @@ public class GestionPersonnel implements Serializable
 			return passerelle.insert(employe);
 		}
 	}
+<<<<<<< HEAD
 	
 	void remove(Employe employe) throws SauvegardeImpossible{
 		employes.remove(employe);
+=======
+
+	public void setAdmin(Employe employe) {
+		// TODO Auto-generated method stub
+		// SetAdmin --> Passerelle.java
+		try
+		{
+			passerelle.setAdmin(employe);
+		}
+		catch(SauvegardeImpossible e)
+		{
+			e.printStackTrace();
+		}
+		
+>>>>>>> b13b03a965751cc4bfd3d79ff25bb98fa000dc15
 	}
 }

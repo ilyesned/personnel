@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
 /**
  * Représente une ligue. Chaque ligue est reliée à une liste
  * d'employés dont un administrateur. Comme il n'est pas possible
@@ -155,6 +154,9 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	public int getId() {
 		return this.id;
 	}
-	
+	public void setAdmin(Employe employe) 
+	{
+		gestionPersonnel.setAdmin(employe);
+	}
 	
 }
