@@ -57,12 +57,12 @@ public class JDBC implements Passerelle
                     String nom = employe.getString("nomemploye");
                     String prenom = employe.getString("prenomemploye");
                     String mail = employe.getString("mailemploye");
-                    String password = employe.getString("mdpemployé");
-                    LocalDate date_arrivee = employe.getDate("dateajout") != null ? LocalDate.parse(employe.getString("dateajout")) : null;
-                    LocalDate date_depart = employe.getDate("datesuppr") != null ? LocalDate.parse(employe.getString("datesuppr")) : null;
+                    String password = employe.getString("mdpemploye");
+                    LocalDate date_arrivee = employe.getDate("date_d'entree") != null ? LocalDate.parse(employe.getString("date_d'entree")) : null;
+                    LocalDate date_depart = employe.getDate("date_de_sortie") != null ? LocalDate.parse(employe.getString("date_de_sortie")) : null;
                     int type = employe.getType();
                     Employe employee = ligue.addEmploye(nom, prenom, mail, password, date_arrivee, date_depart,id);
-                    if (employe.getBoolean("abilitation")) {
+                    if (employe.getBoolean("type")) {
                         ligue.setAdministrateur(employee);
                     }
                 }
@@ -205,11 +205,5 @@ public class JDBC implements Passerelle
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
-	}
-
-	@Override
-	public Employe getSuperAdmin(Employe root) throws SauvegardeImpossible {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
