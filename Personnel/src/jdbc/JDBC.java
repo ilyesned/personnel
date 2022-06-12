@@ -57,12 +57,12 @@ public class JDBC implements Passerelle
                     String nom = employe.getString("nomemploye");
                     String prenom = employe.getString("prenomemploye");
                     String mail = employe.getString("mailemploye");
-                    String password = employe.getString("mdpemploye");
-                    LocalDate date_arrivee = employe.getDate("date_d'entree") != null ? LocalDate.parse(employe.getString("date_d'entree")) : null;
-                    LocalDate date_depart = employe.getDate("date_de_sortie") != null ? LocalDate.parse(employe.getString("date_de_sortie")) : null;
+                    String password = employe.getString("mdpemployé");
+                    LocalDate date_arrivee = employe.getDate("dateajout") != null ? LocalDate.parse(employe.getString("dateajout")) : null;
+                    LocalDate date_depart = employe.getDate("datesuppr") != null ? LocalDate.parse(employe.getString("datesuppr")) : null;
                     int type = employe.getType();
                     Employe employee = ligue.addEmploye(nom, prenom, mail, password, date_arrivee, date_depart,id);
-                    if (employe.getBoolean("type")) {
+                    if (employe.getBoolean("abilitation")) {
                         ligue.setAdministrateur(employee);
                     }
                 }
@@ -125,7 +125,7 @@ public class JDBC implements Passerelle
 		try 
 		{
 			PreparedStatement instruction;
-			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemployï¿½) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemployé) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			instruction.setDate(6, Employe.getDateCome() == null ? null : Date.valueOf(Employe.getDateCome()));
 			instruction.setDate(7, Employe.getDateLeave() == null ? null : Date.valueOf(Employe.getDateLeave()));
 			instruction.setString(1, Employe.getNom());
@@ -157,7 +157,7 @@ public class JDBC implements Passerelle
 		try
 		{
 			PreparedStatement listLigue;
-			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE numligue = ?");
+			listLigue = connection.prepareStatement("DELETE FROM ligue WHERE idligue = ?");
 			listLigue.setInt(1, ligue.getId());
 			listLigue.executeUpdate();
 			System.out.println("Ligue " + ligue.getNom() + " supprimÃ©");
@@ -205,5 +205,11 @@ public class JDBC implements Passerelle
 			e.printStackTrace();
 			throw new SauvegardeImpossible(e);
 		}
+	}
+
+	@Override
+	public Employe getSuperAdmin(Employe root) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
