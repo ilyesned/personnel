@@ -41,12 +41,12 @@ public class JDBC implements Passerelle
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try 
 		{
-			String requete = "select * from ligue";
+			String requete = "SELECT * FROM ligue";
 			Statement instruction = connection.createStatement();
 			ResultSet ligues = instruction.executeQuery(requete);
 			while (ligues.next())
 			{
-				gestionPersonnel.addLigue(ligues.getInt(1), ligues.getString(2));
+				gestionPersonnel.addLigue(ligues.getInt("idligue"), ligues.getString("nomligue"));
 				PreparedStatement request = connection.prepareStatement("SELECT * FROM employe WHERE idligue = ?");
                 request.setInt(1, ligues.getInt("idligue"));
                 ResultSet employe = request.executeQuery();
@@ -120,25 +120,27 @@ public class JDBC implements Passerelle
 		}		
 	}
 	
-	public int insert(Employe Employe) throws SauvegardeImpossible 
+	
+	public int insert(Employe employe) throws SauvegardeImpossible 
 	{
 		try 
 		{
 			PreparedStatement instruction;
+			
 			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemployé) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-			instruction.setDate(6, Employe.getDateCome() == null ? null : Date.valueOf(Employe.getDateCome()));
-			instruction.setDate(7, Employe.getDateLeave() == null ? null : Date.valueOf(Employe.getDateLeave()));
-			instruction.setString(1, Employe.getNom());
-			instruction.setString(2, Employe.getPrenom());
-			instruction.setString(3, Employe.getMail());
-			instruction.setInt(4, Employe.getAbilitation());
-			instruction.setInt(8, Employe.getId());
-			//TODO faire une verification pour savoir l'id de la ligue est null ou existant
-			if(Employe.getLigue() != null) {
-				instruction.setInt(5, Employe.getIdLigue());
+			instruction.setString(1, employe.getNom());
+			instruction.setString(2, employe.getPrenom());
+			instruction.setString(3, employe.getMail());
+			instruction.setInt(4, employe.getAbilitation());
+			if(employe.getLigue() != null) {
+				instruction.setInt(5, employe.getIdLigue());
 			}else {
-				instruction.setNull(5, Employe.getIdLigue(), null);
+				instruction.setNull(5, employe.getIdLigue(), null);
 			}
+			instruction.setDate(6, employe.getDateCome() == null ? null : Date.valueOf(employe.getDateCome()));
+			instruction.setDate(7, employe.getDateLeave() == null ? null : Date.valueOf(employe.getDateLeave()));
+			instruction.setString(8, employe.getPassword());
+			//TODO faire une verification pour savoir l'id de la ligue est null ou existant
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();

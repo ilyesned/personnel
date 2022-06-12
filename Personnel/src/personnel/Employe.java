@@ -20,7 +20,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
 	private int abilitation;
-	private int id = 0;
+	private int id = -1;
 	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateCome, LocalDate dateLeave, int id)
 	{
@@ -32,12 +32,10 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.dateCome = dateCome;
 		this.dateLeave = dateLeave;
-		this.abilitation = 0;
-		try {
-			this.id = gestionPersonnel.insert(this);
-		} catch (SauvegardeImpossible e) {
-			e.printStackTrace();
-		}
+		this.abilitation = 0; // permet de mettre l'abilitation � 0
+		this.gestionPersonnel = gestionPersonnel;
+		this.id = id;
+		
 	}
 	
 	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, LocalDate dateCome, LocalDate dateLeave)
@@ -50,7 +48,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.dateCome = dateCome;
 		this.dateLeave = dateLeave;
-		this.abilitation = 0;
+
 		try {
 			this.id = gestionPersonnel.insert(this);
 		} catch (SauvegardeImpossible e) {
@@ -159,6 +157,10 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * Change le password de l'employé.
 	 * @param password le nouveau password de l'employé. 
 	 */
+	
+	public String getPassword() {
+		return password;
+	}
 	
 	public void setPassword(String password)
 	{
