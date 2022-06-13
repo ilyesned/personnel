@@ -181,7 +181,7 @@ public class JDBC implements Passerelle
 			listEmploye = connection.prepareStatement("DELETE FROM employe WHERE idemploye = ?");
 			listEmploye.setInt(1, employe.getId());
 			listEmploye.executeUpdate();
-			System.out.println("Employe " + employe.getNom() + " supprimÃ©");
+			System.out.println("Employe " + employe.getNom() + " supprimé");
 		}
 		catch (SQLException e) 
 		{

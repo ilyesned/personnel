@@ -116,6 +116,14 @@ public class GestionPersonnel implements Serializable
 	{
 		return root;
 	}
+	void delete(Employe employe) throws SauvegardeImpossible
+	{
+			passerelle.deleteEmploye(employe);	
+	}
+	void delete(Ligue ligue) throws SauvegardeImpossible
+	{
+			passerelle.deleteLigue(ligue);    /* Surcharge pour les deux méthodes delete */
+	}
 
 	int insert(Employe employe) throws SauvegardeImpossible {
 		//la fonction regarde si l'employÃ© et le root et si il est root bah elle fait rien sinon elle insert l'employe)

@@ -43,7 +43,7 @@ public class LigueConsole
 				() -> 
 				{
 					System.out.println(ligue);
-					System.out.println("administr√©e par " + ligue.getAdministrateur());
+					System.out.println("administrÈ par " + ligue.getAdministrateur());
 				}
 		);
 	}
@@ -56,7 +56,7 @@ public class LigueConsole
 			
 			if(ligue.getEmployes().size() == 0)
 			{
-				System.out.println("Il n'y a aucun employ√© dans cette ligue");
+				System.out.println("Il n'y a aucun employÈ dans cette ligue");
 			}
 		});
 	}
@@ -121,7 +121,7 @@ public class LigueConsole
 	
 	private Menu gererEmployes(Ligue ligue)
 	{
-		Menu menu = new Menu("G√©rer les employ√©s de " + ligue.getNom(), "e");
+		Menu menu = new Menu("GÈrer les employÈs de " + ligue.getNom(), "e");
 		menu.add(afficherEmployes(ligue));
 		menu.add(ajouterEmploye(ligue));
 		menu.add(modifierEmploye(ligue));
@@ -132,9 +132,14 @@ public class LigueConsole
 
 	private List<Employe> supprimerEmploye(final Ligue ligue)
 	{
-		return new List<>("Supprimer un employ√©", "s", 
+		return new List<>("Supprimer un employÈ", "s", 
 				() -> new ArrayList<>(ligue.getEmployes()),
-				(index, element) -> {element.remove();}
+				(index, element) -> {try {
+					element.remove();
+				} catch (SauvegardeImpossible e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}}
 				);
 	}
 	
