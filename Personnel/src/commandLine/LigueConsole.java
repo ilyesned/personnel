@@ -161,9 +161,16 @@ public class LigueConsole
 				employeConsole.editerEmploye()
 				);
 	}
+
 	private Option supprimer(Ligue ligue)
 	{
-		return new Option("Supprimer", "d", () -> {ligue.remove();});
+		return new Option("Supprimer", "d", () -> {
+			try {
+				ligue.remove();
+			} catch (SauvegardeImpossible e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}});
 	}
 	
 }

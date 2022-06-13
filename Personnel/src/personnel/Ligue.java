@@ -133,16 +133,15 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * de la ligue.
 	 */
 	
-	public void remove()
-	{
-		gestionPersonnel.remove(this);
-	}
-	
 
 	@Override
 	public int compareTo(Ligue autre)
 	{
 		return getNom().compareTo(autre.getNom());
+	}
+	public void remove() throws SauvegardeImpossible
+	{
+		gestionPersonnel.remove(this);
 	}
 	
 	@Override

@@ -97,8 +97,9 @@ public class GestionPersonnel implements Serializable
 	}
 	
 
-	void remove(Ligue ligue)
+	void remove(Ligue ligue) throws SauvegardeImpossible
 	{
+		gestionPersonnel.delete(ligue);
 		ligues.remove(ligue);
 	}
 	
