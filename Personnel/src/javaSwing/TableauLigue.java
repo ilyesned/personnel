@@ -94,12 +94,12 @@ public class TableauLigue extends JFrame {
 		}
 		catch (ClassNotFoundException e)
 		{
-			JOptionPane.showInputDialog( "Pilote JDBC non installï¿½.");
+			JOptionPane.showInputDialog( "Pilote JDBC non installé.");
 		}
 		catch (SQLException e)
 		{
 			JOptionPane.showInputDialog(e);
-			JOptionPane.showInputDialog("Connexion ï¿½chouï¿½e");
+			JOptionPane.showInputDialog("Connexion échoué");
 		}
 	}
 	}
