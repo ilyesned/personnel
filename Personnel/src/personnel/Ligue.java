@@ -139,6 +139,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		return getNom().compareTo(autre.getNom());
 	}
+	
 	public void remove() throws SauvegardeImpossible
 	{
 		gestionPersonnel.remove(this);
@@ -150,9 +151,11 @@ public class Ligue implements Serializable, Comparable<Ligue>
 		return nom;
 	}
 
-	public int getId() {
+	public int getId() 
+	{
 		return this.id;
 	}
+	
 	public void setAdmin(Employe employe) 
 	{
 		gestionPersonnel.setAdmin(employe);
