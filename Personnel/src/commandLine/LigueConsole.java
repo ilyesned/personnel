@@ -1,6 +1,7 @@
 package commandLine;
 
 import static commandLineMenus.rendering.examples.util.InOut.getString;
+
 import java.time.LocalDate;
 
 import java.util.ArrayList;
@@ -111,9 +112,10 @@ public class LigueConsole
 				{	
 					System.out.println("Ajouter un employe");
 					ligue.addEmploye(getString("nom : "), 
-						getString("prenom : "), getString("mail : "), 
+						getString("prenom : "), 
+						getString("mail : "), 
 						getString("password : "),
-						LocalDate.parse(getString("Date d'ajout :")), LocalDate.parse(getString("Date de suppression : ")));
+						LocalDate.parse(getString("Date d'ajout (YYYY-MM-DD):")), LocalDate.parse(getString("Date de suppression (YYYY-MM-DD) : ")));
 				}
 		);
 		
@@ -152,6 +154,7 @@ public class LigueConsole
 			(index, element) -> {
 				ligue.setAdministrateur(element);}
 			);
+			
 	}
 
 	private List<Employe> modifierEmploye(final Ligue ligue)
