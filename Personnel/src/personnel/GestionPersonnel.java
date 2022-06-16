@@ -1,6 +1,7 @@
 package personnel;
 
 import java.io.Serializable;
+
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -21,7 +22,7 @@ public class GestionPersonnel implements Serializable
 	private static GestionPersonnel gestionPersonnel = null;
 	private SortedSet<Ligue> ligues;
 	private SortedSet<Employe> employes;
-	private Employe root = new Employe(this, null, "root", "", "", "toor", null, null);
+	private Employe root = new Employe(this, null, "root", "", "", "toor", null, null,2);
 	public final static int SERIALIZATION = 1, JDBC = 2,
 			TYPE_PASSERELLE = JDBC;
 	@SuppressWarnings("unused")
@@ -107,7 +108,14 @@ public class GestionPersonnel implements Serializable
 	{
 		return passerelle.insert(ligue);
 	}
-
+	void update(Ligue ligue) throws SauvegardeImpossible
+	{
+		passerelle.update(ligue);
+	}
+	void update(Employe employe) throws SauvegardeImpossible
+	{
+		passerelle.update(employe);
+	}
 	/**
 	 * Retourne le root (super-utilisateur).
 	 * @return le root.
@@ -123,7 +131,7 @@ public class GestionPersonnel implements Serializable
 	}
 	void delete(Ligue ligue) throws SauvegardeImpossible
 	{
-			passerelle.deleteLigue(ligue);    /* Surcharge pour les deux méthodes delete */
+			passerelle.deleteLigue(ligue);    /* Surcharge pour les deux mï¿½thodes delete */
 	}
 
 	int insert(Employe employe) throws SauvegardeImpossible {

@@ -1,6 +1,7 @@
 package personnel;
 
 import java.io.Serializable;
+
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.SortedSet;
@@ -21,6 +22,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	private SortedSet<Employe> employes;
 	private Employe administrateur;
 	private GestionPersonnel gestionPersonnel;
+	/*private LocalDate dateLeave;*/
 	
 	/**
 	 * Crée une ligue.
@@ -144,7 +146,11 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		gestionPersonnel.remove(this);
 	}
-	
+	public void removeAdmin()
+	{
+		administrateur = gestionPersonnel.getRoot();
+	}
+
 	@Override
 	public String toString()
 	{
@@ -160,5 +166,13 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	{
 		gestionPersonnel.setAdmin(employe);
 	}
+
+	/*public LocalDate getDateLeave() {
+		return dateLeave;
+	}
+
+	public void setDateLeave(LocalDate dateLeave) {
+		this.dateLeave = dateLeave;
+	}*/
 	
 }

@@ -7,13 +7,16 @@ public interface Passerelle
 	/* insertion ligue */
 	public int insert(Ligue ligue) throws SauvegardeImpossible;
 	/* suppression ligue*/
+	public void update(Ligue ligue) throws SauvegardeImpossible;
 	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible ;
 	/* insertion employee */
 	public int insert(Employe employe) throws SauvegardeImpossible;
+	public void update(Employe employe) throws SauvegardeImpossible;
 	/* suppression employe */
 	public void deleteEmploye(Employe employe) throws SauvegardeImpossible;
 	/* changer employe par l'Admin */
 	public void setAdmin(Employe employe)  throws SauvegardeImpossible;
 	public Employe getSuperAdmin(Employe root) throws SauvegardeImpossible;
+	
 	
 }

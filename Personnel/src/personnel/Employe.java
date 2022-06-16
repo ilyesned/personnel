@@ -32,7 +32,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.ligue = ligue;
 		this.dateCome = dateCome;
 		this.dateLeave = dateLeave;
-		this.abilitation = 0; // permet de mettre l'abilitation � 0
+		this.abilitation = 0; // permet de mettre l'abilitation � 0
 		this.gestionPersonnel = gestionPersonnel;
 		this.id = id;
 		
@@ -69,7 +69,9 @@ public class Employe implements Serializable, Comparable<Employe>
 	{
 		return ligue.getAdministrateur() == this;
 	}
-	
+	public int getid() {
+		return this.id;
+	}
 	/**
 	 * Retourne vrai ssi l'employé est le root.
 	 * @return vrai ssi l'employé est le root.
@@ -232,7 +234,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	public void setDateLeave(LocalDate dateLeave) {
 		this.dateLeave = dateLeave;
 	}
-	
+
 	public void setAbilitation(int type) {
 		this.abilitation = type;
 	}
