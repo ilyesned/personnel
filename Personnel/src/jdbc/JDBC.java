@@ -1,6 +1,7 @@
 package jdbc;
 
 import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -41,7 +42,7 @@ public class JDBC implements Passerelle
 		GestionPersonnel gestionPersonnel = new GestionPersonnel();
 		try 
 		{
-			String requete = "SELECT * FROM ligue";
+			String requete = "SELECT * FROM ligue ORDER BY nomligue";
 			Statement instruction = connection.createStatement();
 			ResultSet ligues = instruction.executeQuery(requete);
 			while (ligues.next())
@@ -111,7 +112,7 @@ public class JDBC implements Passerelle
 			instruction.executeUpdate();
 			ResultSet id = instruction.getGeneratedKeys();
 			id.next();
-			return id.getInt(1);
+			return id.getInt(1); /* idée de la ligue */
 		} 
 		catch (SQLException exception) 
 		{
@@ -127,7 +128,7 @@ public class JDBC implements Passerelle
 		{
 			PreparedStatement instruction;
 			
-			instruction = connection.prepareStatement("INSERT INTO employe (nomemploye,prenomemploye,mailemploye,abilitation,idligue, dateajout, datesuppr, mdpemploye) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			instruction = connection.prepareStatement("INSERT INTO `employe` (`nomemploye`,`prenomemploye`,`mailemploye`,`abilitation`,`idligue`, `dateajout`, `datesuppr`, `mdpemploye`) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
 			instruction.setString(1, employe.getNom());
 			instruction.setString(2, employe.getPrenom());
 			instruction.setString(3, employe.getMail());
@@ -152,7 +153,6 @@ public class JDBC implements Passerelle
 			throw new SauvegardeImpossible(exception);
 		}		
 	}
-
 	@Override
 	public void deleteLigue(Ligue ligue) throws SauvegardeImpossible {
 		// TODO Auto-generated method stub
@@ -181,7 +181,7 @@ public class JDBC implements Passerelle
 			listEmploye = connection.prepareStatement("DELETE FROM employe WHERE idemploye = ?");
 			listEmploye.setInt(1, employe.getId());
 			listEmploye.executeUpdate();
-			System.out.println("Employe " + employe.getNom() + " supprim�");
+			System.out.println("Employe " + employe.getNom() + " supprim�");
 		}
 		catch (SQLException e) 
 		{
@@ -213,5 +213,33 @@ public class JDBC implements Passerelle
 	public Employe getSuperAdmin(Employe root) throws SauvegardeImpossible {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void update(Ligue ligue) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		try {
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("UPDATE ligue SET nom = '"+ligue.getNom()+"' WHERE idligue = "+ligue.getId()+" ", Statement.RETURN_GENERATED_KEYS);
+			instruction.executeUpdate();
+		} catch (SQLException e) {
+			
+			throw new SauvegardeImpossible(e);
+		}	
+	}
+
+	@Override
+	public void update(Employe employe) throws SauvegardeImpossible {
+		// TODO Auto-generated method stub
+		try {
+			PreparedStatement instruction;
+			instruction = connection.prepareStatement("UPDATE employé SET nom = '"+ employe.getNom()+
+					"', prénom = '"+employe.getPrenom()+"',  mail = '"+employe.getMail()+"',  password ='"+
+					employe.getPassword()+"', type = "+employe.getAbilitation() +" WHERE idemployé = "+ employe.getid() +" ", Statement.RETURN_GENERATED_KEYS);
+			instruction.executeUpdate();
+		} catch (SQLException e) {
+			
+			throw new SauvegardeImpossible(e);
+		}
 	}
 }

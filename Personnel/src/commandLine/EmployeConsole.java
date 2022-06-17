@@ -75,7 +75,8 @@ public class EmployeConsole
 	private Option administrer(final Employe employe)
 	{
 		Ligue ligue = employe.getLigue();
-		return new Option("Administrateur de la ligue", "c", () -> {ligue.setAdministrateur(employe);});
+		return new Option("Devenir Administrateur de la ligue", "c", () -> {ligue.setAdministrateur(employe);});
+		//System.out.println("");
 	}
 	
 	private Option supprimerEmploye(final Employe employe) {

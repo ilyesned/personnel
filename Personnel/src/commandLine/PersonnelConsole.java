@@ -1,6 +1,7 @@
 package commandLine;
 
 import personnel.*;
+
 import commandLineMenus.*;
 import static commandLineMenus.rendering.examples.util.InOut.*;
 
@@ -49,6 +50,7 @@ public class PersonnelConsole
 					{
 						gestionPersonnel.sauvegarder();
 						Action.QUIT.optionSelected();
+						System.out.println("La Sauvegarde a été effectué");
 					} 
 					catch (SauvegardeImpossible e)
 					{
